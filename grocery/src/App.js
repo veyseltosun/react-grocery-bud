@@ -2,7 +2,7 @@ import React from 'react'
 
 function App() {
   return (
-    <div>app</div>
+    <div>Grocery Bud App</div>
   )
 }
 
