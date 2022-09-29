@@ -1,4 +1,23 @@
+import { useState, useEffect } from 'react';
+import List from "./List";
+import Alert from "./Alert";
+
+const getLocalStorage = () =>{
+  let list = localStorage.getItem("list");
+  if (list){
+    return(list = JSON.parse(localStorage.getItem("list")));
+
+  }else{
+    return[];
+  }
+}
+
+
+
+
 import React from 'react'
+
+
 
 function App() {
   return (
