@@ -65,7 +65,11 @@ function App() {
   const clearList = () =>{
     showAlert(true, "danger", "empty list");
     setList([]);
-    
+
+  }
+  const removeItem = (id) => {
+    showAlert(true, "danger", "item removed");
+    setLis
   }
   return (
     <div>Grocery Bud App</div>
