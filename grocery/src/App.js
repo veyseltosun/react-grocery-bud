@@ -25,7 +25,7 @@ function App() {
   const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
-  const [alert, setAlert] = useState({show:false, msg: "", type: ""});
+  const [alert, setAlert] = useState({show:false, msg: "hello mello", type: "success"});
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (!name){
@@ -45,7 +45,7 @@ function App() {
   return(
     <section className='section-center'>
       <form className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert></Alert>}
+        {alert.show && <Alert{...alert}></Alert>}
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input type="text" className='grocery' placeholder='e.g. eggs' value={name} onChange={(e)=>setName(e.target.value)}></input>
