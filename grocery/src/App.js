@@ -25,11 +25,12 @@ function App() {
   const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
-  const [alert, setAlert] = useState({show:false, msg: "hello mello", type: "success"});
+  const [alert, setAlert] = useState({show:false, msg: "", type: ""});
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (!name){
       // display alert
+      setAlert({show:true, msg:"please enter a grocery need to buy!", type:"danger"})
     }
     else if(name && isEditing){
       // deal with editing

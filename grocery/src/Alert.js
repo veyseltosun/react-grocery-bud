@@ -3,12 +3,14 @@ import {useEffect} from "react";
 
 
 function Alert({type, msg}) {
-    return 
-    (
+    return (
+    <div>
+
+
         <p className={`alert alert-${type}`}>{msg}</p>
 
-    )
+    </div>
+        )
+    
 }
-  
-
-export default Alert
+export default Alert;
