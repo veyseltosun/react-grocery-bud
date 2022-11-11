@@ -6,7 +6,7 @@ import Alert from "./Alert";
 const getLocalStorage = () =>{
   let list = localStorage.getItem("list");
   if (list){
-    return(list = JSON.parse(localStorage.getItem("list")));
+    return list = JSON.parse(localStorage.getItem("list"));
 
   }else{
     return[];
@@ -35,6 +35,19 @@ function App() {
     }
     else if(name && isEditing){
       // deal with editing
+      setList(
+        list.map((item) => {
+          if(item.id === editID){
+            return{...item, title:name}
+          }
+          return item
+        })
+      )
+      setName("");
+      setEditID(null);
+      setIsEditing(false);
+      showAlert(true,"success", "ürün adı düzeltildi")
+
     }
     else{
       showAlert(true, "success", "ürün listeye eklendi")
@@ -58,10 +71,23 @@ const removeItem = (id)=>{
   setAlert(true, "danger", "ürün listeden kaldırıldı!")
   setList(list.filter((item)=>item.id!==id))
 }
+
+const editItem =(id) =>{
+  const specificItem = list.find((item)=>item.id===id);
+  setIsEditing(true);
+  setEditID(id);
+  setName(specificItem.title);
+
+}
+
+useEffect(()=>{
+  localStorage.setItem("list", JSON.stringify(list))
+
+},[list])
   return(
     <section className='section-center'>
       <form className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
+        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list}/>}
         <h3>market listem</h3>
         <div className='form-control'>
           <input type="text" className='grocery' placeholder='e.g. eggs' value={name} onChange={(e)=>setName(e.target.value)}></input>
@@ -71,7 +97,7 @@ const removeItem = (id)=>{
       {list.length > 0 &&(
 
       <div className='grocery-container'>
-        <List items={list} removeItem={removeItem}/>
+        <List items={list} removeItem={removeItem} editItem={editItem}/>
         <button className='clear-btn' onClick={clearList}>clear items</button>
       </div>
       )}
