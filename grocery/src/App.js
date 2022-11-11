@@ -30,7 +30,8 @@ function App() {
     e.preventDefault();
     if (!name){
       // display alert
-      setAlert({show:true, msg:"please enter a grocery need to buy!", type:"danger"})
+      // setAlert({show:true, msg:"please enter a grocery need to buy!", type:"danger"})
+      showAlert(true, "danger", "please enter value")
     }
     else if(name && isEditing){
       // deal with editing
@@ -43,10 +44,14 @@ function App() {
     
   }
 }
+
+const showAlert = (show= false, type="", msg="")=>{
+  setAlert({show,type,msg})
+}
   return(
     <section className='section-center'>
       <form className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert{...alert}></Alert>}
+        {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input type="text" className='grocery' placeholder='e.g. eggs' value={name} onChange={(e)=>setName(e.target.value)}></input>
