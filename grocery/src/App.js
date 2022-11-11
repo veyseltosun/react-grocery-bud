@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import List from "./List";
 import Alert from "./Alert";
 
+
 const getLocalStorage = () =>{
   let list = localStorage.getItem("list");
   if (list){
@@ -22,13 +23,25 @@ const getLocalStorage = () =>{
 function App() {
   const [name, setName] = useState("");
   const [list, setList] = useState(getLocalStorage());
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({show:false, msg: "", type: ""});
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log("on submit work")
+    if (!name){
+      // display alert
+    }
+    else if(name && isEditing){
+      // deal with editing
+    }
+    else{
+      // show alert
+      const newItem = {id: new Date().getTime().toString(), title:name }
+      setList([...list, newItem]);
+      setName("");
+    
   }
+}
   return(
     <section className='section-center'>
       <form className="grocery-form" onSubmit={handleSubmit}>
@@ -40,12 +53,11 @@ function App() {
         </div>
       </form>
       <div className='grocery-container'>
-        <List></List>
+        <List items={list}/>
         <button className='clear-btn'>clear items</button>
       </div>
 
     </section>
   )
 }
-
-export default App
+export default App;
