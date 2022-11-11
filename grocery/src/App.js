@@ -22,7 +22,7 @@ const getLocalStorage = () =>{
 function App() {
   const [name, setName] = useState("");
   const [list, setList] = useState(getLocalStorage());
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({show:false, msg: "", type: ""});
   const handleSubmit = (e) =>{
@@ -35,7 +35,7 @@ function App() {
         {alert.show && <Alert></Alert>}
         <h3>grocery bud</h3>
         <div className='form-control'>
-          <input type="text"></input>
+          <input type="text" className='grocery' placeholder='e.g. eggs' value={name} onChange={(e)=>setName(e.target.value)}></input>
           <button type="submit" className='submit-btn'>{isEditing ? "edit" : "submit"}</button>
         </div>
       </form>
