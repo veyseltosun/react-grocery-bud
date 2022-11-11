@@ -52,10 +52,13 @@ function App() {
           <button type="submit" className='submit-btn'>{isEditing ? "edit" : "submit"}</button>
         </div>
       </form>
+      {list.length > 0 &&(
+
       <div className='grocery-container'>
         <List items={list}/>
         <button className='clear-btn'>clear items</button>
       </div>
+      )}
 
     </section>
   )
