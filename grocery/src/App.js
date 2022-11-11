@@ -59,7 +59,7 @@ function App() {
 }
 
 const showAlert = (show= false, type="", msg="")=>{
-  setAlert({show,type,msg})
+  setAlert({show, type, msg})
 }
 
 const clearList = () =>{
@@ -68,7 +68,7 @@ const clearList = () =>{
 
 }
 const removeItem = (id)=>{
-  setAlert(true, "danger", "ürün listeden kaldırıldı!")
+  showAlert(true, "danger", "ürün listeden kaldırıldı!")
   setList(list.filter((item)=>item.id!==id))
 }
 
@@ -77,6 +77,7 @@ const editItem =(id) =>{
   setIsEditing(true);
   setEditID(id);
   setName(specificItem.title);
+  
 
 }
 
